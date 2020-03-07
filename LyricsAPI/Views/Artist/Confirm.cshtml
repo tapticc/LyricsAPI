@@ -1,0 +1,33 @@
+﻿@model LyricsAPI.Models.ArtistConfirmViewModel
+
+@{
+    ViewData["Title"] = "Artist Lookup";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Artist Confirmation</h1>
+
+    @using (Html.BeginForm("Confirm", "Artist", FormMethod.Post))
+    {
+        <div class="form-group">
+            <h4>Artists Found For: @Html.DisplayFor(m => m.ArtistSearchName)</h4>
+
+            @Html.DropDownListFor(m => m.SelectedArtistId, new SelectList(Model.Artists, "Id", "Name", "SelectedArtist"))
+            <br><br>
+            @Html.ValueFor(m => Model.ValidationMessage)
+
+            @Html.HiddenFor(m => m.ArtistSearchName)
+            @Html.HiddenFor(m => m.ValidationMessage)
+            @Html.HiddenFor(m => m.SelectedArtistId)
+            @for (int i = 0; i < Model.Artists.Count; i++)
+            {
+                @Html.HiddenFor(m => m.Artists[i].Id)
+                @Html.HiddenFor(m => m.Artists[i].Name)
+            }
+            <label>@Model.ValidationMessage</label>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Confirm Artist" class="btn btn-primary" />
+        </div>
+    }
+</div>

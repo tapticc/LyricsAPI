@@ -1,0 +1,29 @@
+﻿@model LyricsAPI.Models.RecordingsViewModel
+
+@{
+    ViewData["Title"] = "Artist Lookup";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Recordings for @Model.ArtistName</h1>
+    <p>Lyrics API Caller</p>
+</div>
+
+<div class="text-center">
+    <form asp-action="Results" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <h4>There are @Model.Recordings.Count recordings available in the database:</h4>
+            <br><br>
+                <table>
+                    @foreach (var recording in Model.Recordings)
+                    {
+                        <tr>
+                            <td style="text-align:left;">
+                                @recording.Title
+                            </td>
+                        </tr>
+                    }
+                </table>
+        </div>
+    </form>
+</div>

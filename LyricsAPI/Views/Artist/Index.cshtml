@@ -1,0 +1,32 @@
+﻿@model ArtistSelectViewModel
+
+@{
+    ViewData["Title"] = "Artist Lookup";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Results</h1>
+    <p>Lyrics API Caller</p>
+</div>
+
+<div class="text-center">
+    <form asp-action="Index" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <table>
+                <tr>
+                    <td>
+                        <label asp-for="ArtistName" class="control-label"></label>
+                    </td>
+                    <td>
+                        <input asp-for="ArtistName" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="submit" value="Search" class="btn btn-primary" />
+                    </td>
+                </tr>
+            </table>
+            <label>@Model.ValidationMessage</label>
+        </div>
+    </form>
+</div>
